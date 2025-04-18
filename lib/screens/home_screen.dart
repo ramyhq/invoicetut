@@ -1,13 +1,12 @@
 // Purpose: Main user interface for viewing invoices.
 
-import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../database/daos/invoice_dao.dart';
 
 import '../database/database.dart';
 
-// Provider لقاعدة البيانات
+// Provider of db
 final dbProvider = Provider<AppDatabase>((ref) => AppDatabase());
 
 // Provider لـ InvoiceDao
