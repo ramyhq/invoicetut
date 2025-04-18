@@ -8,7 +8,7 @@ This project is a starting point for a Flutter application.
 
 ### Flutter Version
 
-# flutter doctor -v
+# Result flutter doctor -v
 
 [✓] Flutter (Channel stable, 3.29.3, on macOS 14.7.2 23H311 darwin-x64, locale en-EG) [884ms]
 • Flutter version 3.29.3 on channel stable at /Users/ramy/Development/flutter
