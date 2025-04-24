@@ -1,0 +1,22 @@
+
+
+
+lib/
+│
+├── features/
+│   └── invoice/
+│       ├── data/
+│       │   ├── datasources/invoice_local_datasource.dart
+│       │   ├── models/invoice_model.dart
+│       │   └── repositories/invoice_repository_impl.dart
+│       │
+│       ├── domain/
+│       │   ├── entities/invoice_entity.dart
+│       │   ├── repositories/invoice_repository.dart
+│       │   └── usecases/get_all_invoices.dart
+│       │
+│       └── presentation/
+│           ├── providers/invoice_provider.dart
+│           └── pages/invoice_page.dart
+│
+└── main.dart

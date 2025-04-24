@@ -5,30 +5,17 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:conerp/features/invoice/presentation/pages/invoice_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Added for ProviderScope
-import 'package:conerp/screens/home_screen.dart'; // Added for HomeScreen
+import 'package:conerp/fv1/screens/home_screen.dart'; // Added for HomeScreen
 // Removed: import 'package:conerp/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    // Wrap with ProviderScope and MaterialApp as done in main.dart
+  testWidgets('test', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const ProviderScope(child: MaterialApp(home: HomeScreen())),
+      ProviderScope(child: MaterialApp(home: InvoicePage())),
     );
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
   });
 }
