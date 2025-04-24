@@ -12,8 +12,7 @@ part of 'invoice_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Invoice _$InvoiceFromJson(Map<String, dynamic> json) {
   return _Invoice.fromJson(json);
@@ -41,13 +40,12 @@ abstract class $InvoiceCopyWith<$Res> {
   factory $InvoiceCopyWith(Invoice value, $Res Function(Invoice) then) =
       _$InvoiceCopyWithImpl<$Res, Invoice>;
   @useResult
-  $Res call({
-    int id,
-    String customerName,
-    DateTime date,
-    double total,
-    bool isSynced,
-  });
+  $Res call(
+      {int id,
+      String customerName,
+      DateTime date,
+      double total,
+      bool isSynced});
 }
 
 /// @nodoc
@@ -71,54 +69,44 @@ class _$InvoiceCopyWithImpl<$Res, $Val extends Invoice>
     Object? total = null,
     Object? isSynced = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as int,
-            customerName:
-                null == customerName
-                    ? _value.customerName
-                    : customerName // ignore: cast_nullable_to_non_nullable
-                        as String,
-            date:
-                null == date
-                    ? _value.date
-                    : date // ignore: cast_nullable_to_non_nullable
-                        as DateTime,
-            total:
-                null == total
-                    ? _value.total
-                    : total // ignore: cast_nullable_to_non_nullable
-                        as double,
-            isSynced:
-                null == isSynced
-                    ? _value.isSynced
-                    : isSynced // ignore: cast_nullable_to_non_nullable
-                        as bool,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      customerName: null == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
+      isSynced: null == isSynced
+          ? _value.isSynced
+          : isSynced // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$InvoiceImplCopyWith<$Res> implements $InvoiceCopyWith<$Res> {
   factory _$$InvoiceImplCopyWith(
-    _$InvoiceImpl value,
-    $Res Function(_$InvoiceImpl) then,
-  ) = __$$InvoiceImplCopyWithImpl<$Res>;
+          _$InvoiceImpl value, $Res Function(_$InvoiceImpl) then) =
+      __$$InvoiceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    int id,
-    String customerName,
-    DateTime date,
-    double total,
-    bool isSynced,
-  });
+  $Res call(
+      {int id,
+      String customerName,
+      DateTime date,
+      double total,
+      bool isSynced});
 }
 
 /// @nodoc
@@ -126,9 +114,8 @@ class __$$InvoiceImplCopyWithImpl<$Res>
     extends _$InvoiceCopyWithImpl<$Res, _$InvoiceImpl>
     implements _$$InvoiceImplCopyWith<$Res> {
   __$$InvoiceImplCopyWithImpl(
-    _$InvoiceImpl _value,
-    $Res Function(_$InvoiceImpl) _then,
-  ) : super(_value, _then);
+      _$InvoiceImpl _value, $Res Function(_$InvoiceImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of Invoice
   /// with the given fields replaced by the non-null parameter values.
@@ -141,48 +128,40 @@ class __$$InvoiceImplCopyWithImpl<$Res>
     Object? total = null,
     Object? isSynced = null,
   }) {
-    return _then(
-      _$InvoiceImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as int,
-        customerName:
-            null == customerName
-                ? _value.customerName
-                : customerName // ignore: cast_nullable_to_non_nullable
-                    as String,
-        date:
-            null == date
-                ? _value.date
-                : date // ignore: cast_nullable_to_non_nullable
-                    as DateTime,
-        total:
-            null == total
-                ? _value.total
-                : total // ignore: cast_nullable_to_non_nullable
-                    as double,
-        isSynced:
-            null == isSynced
-                ? _value.isSynced
-                : isSynced // ignore: cast_nullable_to_non_nullable
-                    as bool,
-      ),
-    );
+    return _then(_$InvoiceImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      customerName: null == customerName
+          ? _value.customerName
+          : customerName // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
+      isSynced: null == isSynced
+          ? _value.isSynced
+          : isSynced // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$InvoiceImpl implements _Invoice {
-  _$InvoiceImpl({
-    required this.id,
-    required this.customerName,
-    required this.date,
-    required this.total,
-    required this.isSynced,
-  });
+  _$InvoiceImpl(
+      {required this.id,
+      required this.customerName,
+      required this.date,
+      required this.total,
+      required this.isSynced});
 
   factory _$InvoiceImpl.fromJson(Map<String, dynamic> json) =>
       _$$InvoiceImplFromJson(json);
@@ -232,18 +211,19 @@ class _$InvoiceImpl implements _Invoice {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InvoiceImplToJson(this);
+    return _$$InvoiceImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _Invoice implements Invoice {
-  factory _Invoice({
-    required final int id,
-    required final String customerName,
-    required final DateTime date,
-    required final double total,
-    required final bool isSynced,
-  }) = _$InvoiceImpl;
+  factory _Invoice(
+      {required final int id,
+      required final String customerName,
+      required final DateTime date,
+      required final double total,
+      required final bool isSynced}) = _$InvoiceImpl;
 
   factory _Invoice.fromJson(Map<String, dynamic> json) = _$InvoiceImpl.fromJson;
 

@@ -11,79 +11,51 @@ class $InvoicesTable extends Invoices with TableInfo<$InvoicesTable, Invoice> {
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-    'id',
-    aliasedName,
-    false,
-    hasAutoIncrement: true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
-  );
-  static const VerificationMeta _customerNameMeta = const VerificationMeta(
-    'customerName',
-  );
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _customerNameMeta =
+      const VerificationMeta('customerName');
   @override
   late final GeneratedColumn<String> customerName = GeneratedColumn<String>(
-    'customer_name',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-  );
+      'customer_name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _dateMeta = const VerificationMeta('date');
   @override
   late final GeneratedColumn<DateTime> date = GeneratedColumn<DateTime>(
-    'date',
-    aliasedName,
-    false,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: false,
-    clientDefault: () => DateTime.now(),
-  );
+      'date', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      clientDefault: () => DateTime.now());
   static const VerificationMeta _totalMeta = const VerificationMeta('total');
   @override
   late final GeneratedColumn<double> total = GeneratedColumn<double>(
-    'total',
-    aliasedName,
-    false,
-    type: DriftSqlType.double,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _isSyncedMeta = const VerificationMeta(
-    'isSynced',
-  );
+      'total', aliasedName, false,
+      type: DriftSqlType.double, requiredDuringInsert: true);
+  static const VerificationMeta _isSyncedMeta =
+      const VerificationMeta('isSynced');
   @override
   late final GeneratedColumn<bool> isSynced = GeneratedColumn<bool>(
-    'is_synced',
-    aliasedName,
-    false,
-    type: DriftSqlType.bool,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("is_synced" IN (0, 1))',
-    ),
-    defaultValue: const Constant(false),
-  );
+      'is_synced', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("is_synced" IN (0, 1))'),
+      defaultValue: const Constant(false));
   @override
-  List<GeneratedColumn> get $columns => [
-    id,
-    customerName,
-    date,
-    total,
-    isSynced,
-  ];
+  List<GeneratedColumn> get $columns =>
+      [id, customerName, date, total, isSynced];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
   static const String $name = 'invoices';
   @override
-  VerificationContext validateIntegrity(
-    Insertable<Invoice> instance, {
-    bool isInserting = false,
-  }) {
+  VerificationContext validateIntegrity(Insertable<Invoice> instance,
+      {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
@@ -91,34 +63,25 @@ class $InvoicesTable extends Invoices with TableInfo<$InvoicesTable, Invoice> {
     }
     if (data.containsKey('customer_name')) {
       context.handle(
-        _customerNameMeta,
-        customerName.isAcceptableOrUnknown(
-          data['customer_name']!,
           _customerNameMeta,
-        ),
-      );
+          customerName.isAcceptableOrUnknown(
+              data['customer_name']!, _customerNameMeta));
     } else if (isInserting) {
       context.missing(_customerNameMeta);
     }
     if (data.containsKey('date')) {
       context.handle(
-        _dateMeta,
-        date.isAcceptableOrUnknown(data['date']!, _dateMeta),
-      );
+          _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
     }
     if (data.containsKey('total')) {
       context.handle(
-        _totalMeta,
-        total.isAcceptableOrUnknown(data['total']!, _totalMeta),
-      );
+          _totalMeta, total.isAcceptableOrUnknown(data['total']!, _totalMeta));
     } else if (isInserting) {
       context.missing(_totalMeta);
     }
     if (data.containsKey('is_synced')) {
-      context.handle(
-        _isSyncedMeta,
-        isSynced.isAcceptableOrUnknown(data['is_synced']!, _isSyncedMeta),
-      );
+      context.handle(_isSyncedMeta,
+          isSynced.isAcceptableOrUnknown(data['is_synced']!, _isSyncedMeta));
     }
     return context;
   }
@@ -129,31 +92,16 @@ class $InvoicesTable extends Invoices with TableInfo<$InvoicesTable, Invoice> {
   Invoice map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Invoice(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}id'],
-          )!,
-      customerName:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.string,
-            data['${effectivePrefix}customer_name'],
-          )!,
-      date:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}date'],
-          )!,
-      total:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.double,
-            data['${effectivePrefix}total'],
-          )!,
-      isSynced:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.bool,
-            data['${effectivePrefix}is_synced'],
-          )!,
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      customerName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}customer_name'])!,
+      date: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}date'])!,
+      total: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}total'])!,
+      isSynced: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_synced'])!,
     );
   }
 
@@ -169,13 +117,12 @@ class Invoice extends DataClass implements Insertable<Invoice> {
   final DateTime date;
   final double total;
   final bool isSynced;
-  const Invoice({
-    required this.id,
-    required this.customerName,
-    required this.date,
-    required this.total,
-    required this.isSynced,
-  });
+  const Invoice(
+      {required this.id,
+      required this.customerName,
+      required this.date,
+      required this.total,
+      required this.isSynced});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -197,10 +144,8 @@ class Invoice extends DataClass implements Insertable<Invoice> {
     );
   }
 
-  factory Invoice.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
+  factory Invoice.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Invoice(
       id: serializer.fromJson<int>(json['id']),
@@ -222,26 +167,25 @@ class Invoice extends DataClass implements Insertable<Invoice> {
     };
   }
 
-  Invoice copyWith({
-    int? id,
-    String? customerName,
-    DateTime? date,
-    double? total,
-    bool? isSynced,
-  }) => Invoice(
-    id: id ?? this.id,
-    customerName: customerName ?? this.customerName,
-    date: date ?? this.date,
-    total: total ?? this.total,
-    isSynced: isSynced ?? this.isSynced,
-  );
+  Invoice copyWith(
+          {int? id,
+          String? customerName,
+          DateTime? date,
+          double? total,
+          bool? isSynced}) =>
+      Invoice(
+        id: id ?? this.id,
+        customerName: customerName ?? this.customerName,
+        date: date ?? this.date,
+        total: total ?? this.total,
+        isSynced: isSynced ?? this.isSynced,
+      );
   Invoice copyWithCompanion(InvoicesCompanion data) {
     return Invoice(
       id: data.id.present ? data.id.value : this.id,
-      customerName:
-          data.customerName.present
-              ? data.customerName.value
-              : this.customerName,
+      customerName: data.customerName.present
+          ? data.customerName.value
+          : this.customerName,
       date: data.date.present ? data.date.value : this.date,
       total: data.total.present ? data.total.value : this.total,
       isSynced: data.isSynced.present ? data.isSynced.value : this.isSynced,
@@ -292,8 +236,8 @@ class InvoicesCompanion extends UpdateCompanion<Invoice> {
     this.date = const Value.absent(),
     required double total,
     this.isSynced = const Value.absent(),
-  }) : customerName = Value(customerName),
-       total = Value(total);
+  })  : customerName = Value(customerName),
+        total = Value(total);
   static Insertable<Invoice> custom({
     Expression<int>? id,
     Expression<String>? customerName,
@@ -310,13 +254,12 @@ class InvoicesCompanion extends UpdateCompanion<Invoice> {
     });
   }
 
-  InvoicesCompanion copyWith({
-    Value<int>? id,
-    Value<String>? customerName,
-    Value<DateTime>? date,
-    Value<double>? total,
-    Value<bool>? isSynced,
-  }) {
+  InvoicesCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? customerName,
+      Value<DateTime>? date,
+      Value<double>? total,
+      Value<bool>? isSynced}) {
     return InvoicesCompanion(
       id: id ?? this.id,
       customerName: customerName ?? this.customerName,
@@ -372,203 +315,125 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [invoices];
 }
 
-typedef $$InvoicesTableCreateCompanionBuilder =
-    InvoicesCompanion Function({
-      Value<int> id,
-      required String customerName,
-      Value<DateTime> date,
-      required double total,
-      Value<bool> isSynced,
-    });
-typedef $$InvoicesTableUpdateCompanionBuilder =
-    InvoicesCompanion Function({
-      Value<int> id,
-      Value<String> customerName,
-      Value<DateTime> date,
-      Value<double> total,
-      Value<bool> isSynced,
-    });
+typedef $$InvoicesTableCreateCompanionBuilder = InvoicesCompanion Function({
+  Value<int> id,
+  required String customerName,
+  Value<DateTime> date,
+  required double total,
+  Value<bool> isSynced,
+});
+typedef $$InvoicesTableUpdateCompanionBuilder = InvoicesCompanion Function({
+  Value<int> id,
+  Value<String> customerName,
+  Value<DateTime> date,
+  Value<double> total,
+  Value<bool> isSynced,
+});
+
+class $$InvoicesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $InvoicesTable,
+    Invoice,
+    $$InvoicesTableFilterComposer,
+    $$InvoicesTableOrderingComposer,
+    $$InvoicesTableCreateCompanionBuilder,
+    $$InvoicesTableUpdateCompanionBuilder> {
+  $$InvoicesTableTableManager(_$AppDatabase db, $InvoicesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          filteringComposer:
+              $$InvoicesTableFilterComposer(ComposerState(db, table)),
+          orderingComposer:
+              $$InvoicesTableOrderingComposer(ComposerState(db, table)),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<String> customerName = const Value.absent(),
+            Value<DateTime> date = const Value.absent(),
+            Value<double> total = const Value.absent(),
+            Value<bool> isSynced = const Value.absent(),
+          }) =>
+              InvoicesCompanion(
+            id: id,
+            customerName: customerName,
+            date: date,
+            total: total,
+            isSynced: isSynced,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required String customerName,
+            Value<DateTime> date = const Value.absent(),
+            required double total,
+            Value<bool> isSynced = const Value.absent(),
+          }) =>
+              InvoicesCompanion.insert(
+            id: id,
+            customerName: customerName,
+            date: date,
+            total: total,
+            isSynced: isSynced,
+          ),
+        ));
+}
 
 class $$InvoicesTableFilterComposer
-    extends Composer<_$AppDatabase, $InvoicesTable> {
-  $$InvoicesTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
+    extends FilterComposer<_$AppDatabase, $InvoicesTable> {
+  $$InvoicesTableFilterComposer(super.$state);
+  ColumnFilters<int> get id => $state.composableBuilder(
+      column: $state.table.id,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
 
-  ColumnFilters<String> get customerName => $composableBuilder(
-    column: $table.customerName,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<String> get customerName => $state.composableBuilder(
+      column: $state.table.customerName,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
 
-  ColumnFilters<DateTime> get date => $composableBuilder(
-    column: $table.date,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<DateTime> get date => $state.composableBuilder(
+      column: $state.table.date,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
 
-  ColumnFilters<double> get total => $composableBuilder(
-    column: $table.total,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<double> get total => $state.composableBuilder(
+      column: $state.table.total,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
 
-  ColumnFilters<bool> get isSynced => $composableBuilder(
-    column: $table.isSynced,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<bool> get isSynced => $state.composableBuilder(
+      column: $state.table.isSynced,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
 }
 
 class $$InvoicesTableOrderingComposer
-    extends Composer<_$AppDatabase, $InvoicesTable> {
-  $$InvoicesTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
+    extends OrderingComposer<_$AppDatabase, $InvoicesTable> {
+  $$InvoicesTableOrderingComposer(super.$state);
+  ColumnOrderings<int> get id => $state.composableBuilder(
+      column: $state.table.id,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
 
-  ColumnOrderings<String> get customerName => $composableBuilder(
-    column: $table.customerName,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<String> get customerName => $state.composableBuilder(
+      column: $state.table.customerName,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
 
-  ColumnOrderings<DateTime> get date => $composableBuilder(
-    column: $table.date,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<DateTime> get date => $state.composableBuilder(
+      column: $state.table.date,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
 
-  ColumnOrderings<double> get total => $composableBuilder(
-    column: $table.total,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<double> get total => $state.composableBuilder(
+      column: $state.table.total,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
 
-  ColumnOrderings<bool> get isSynced => $composableBuilder(
-    column: $table.isSynced,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<bool> get isSynced => $state.composableBuilder(
+      column: $state.table.isSynced,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
 }
-
-class $$InvoicesTableAnnotationComposer
-    extends Composer<_$AppDatabase, $InvoicesTable> {
-  $$InvoicesTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  GeneratedColumn<int> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
-
-  GeneratedColumn<String> get customerName => $composableBuilder(
-    column: $table.customerName,
-    builder: (column) => column,
-  );
-
-  GeneratedColumn<DateTime> get date =>
-      $composableBuilder(column: $table.date, builder: (column) => column);
-
-  GeneratedColumn<double> get total =>
-      $composableBuilder(column: $table.total, builder: (column) => column);
-
-  GeneratedColumn<bool> get isSynced =>
-      $composableBuilder(column: $table.isSynced, builder: (column) => column);
-}
-
-class $$InvoicesTableTableManager
-    extends
-        RootTableManager<
-          _$AppDatabase,
-          $InvoicesTable,
-          Invoice,
-          $$InvoicesTableFilterComposer,
-          $$InvoicesTableOrderingComposer,
-          $$InvoicesTableAnnotationComposer,
-          $$InvoicesTableCreateCompanionBuilder,
-          $$InvoicesTableUpdateCompanionBuilder,
-          (Invoice, BaseReferences<_$AppDatabase, $InvoicesTable, Invoice>),
-          Invoice,
-          PrefetchHooks Function()
-        > {
-  $$InvoicesTableTableManager(_$AppDatabase db, $InvoicesTable table)
-    : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer:
-              () => $$InvoicesTableFilterComposer($db: db, $table: table),
-          createOrderingComposer:
-              () => $$InvoicesTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer:
-              () => $$InvoicesTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<String> customerName = const Value.absent(),
-                Value<DateTime> date = const Value.absent(),
-                Value<double> total = const Value.absent(),
-                Value<bool> isSynced = const Value.absent(),
-              }) => InvoicesCompanion(
-                id: id,
-                customerName: customerName,
-                date: date,
-                total: total,
-                isSynced: isSynced,
-              ),
-          createCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                required String customerName,
-                Value<DateTime> date = const Value.absent(),
-                required double total,
-                Value<bool> isSynced = const Value.absent(),
-              }) => InvoicesCompanion.insert(
-                id: id,
-                customerName: customerName,
-                date: date,
-                total: total,
-                isSynced: isSynced,
-              ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
-          prefetchHooksCallback: null,
-        ),
-      );
-}
-
-typedef $$InvoicesTableProcessedTableManager =
-    ProcessedTableManager<
-      _$AppDatabase,
-      $InvoicesTable,
-      Invoice,
-      $$InvoicesTableFilterComposer,
-      $$InvoicesTableOrderingComposer,
-      $$InvoicesTableAnnotationComposer,
-      $$InvoicesTableCreateCompanionBuilder,
-      $$InvoicesTableUpdateCompanionBuilder,
-      (Invoice, BaseReferences<_$AppDatabase, $InvoicesTable, Invoice>),
-      Invoice,
-      PrefetchHooks Function()
-    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
